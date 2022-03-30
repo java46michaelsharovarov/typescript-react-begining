@@ -3,7 +3,7 @@ function intersection(set1, set2) {
     set1.forEach(e => set2.has(e) && ar.push(e));
     return ar;
 }
-function sbtract(set1, set2) {
+function subtract(set1, set2) {
     return [...set1].filter(e => !set2.has(e));
 }
 function getSortedOccurrences(array) {
@@ -18,5 +18,5 @@ const set1 = new Set([1, 2, 3, 4]);
 const set2 = new Set([3, 4, 5, 6]);
 const array = ['lmn', 'ab', 'a', 'cd', 'lmn', 'cd', 'lmn'];
 console.log(intersection(set1, set2));
-console.log(sbtract(set1, set2));
+console.log(subtract(set1, set2));
 console.log(getSortedOccurrences(array));
