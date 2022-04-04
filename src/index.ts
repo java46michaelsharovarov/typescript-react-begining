@@ -79,12 +79,10 @@ class Rectangle extends Square {
 class Canvas implements Shape {
     constructor(private _shapes: Shape[]) {};
     addShape(shape: Shape): number {
-        this._shapes.push(shape);
-        return this._shapes.length - 1;
+        return this._shapes.push(shape) - 1;
     }
     removeShape(index: number): Shape {
-        const array = this._shapes.splice(index, 1);
-        return array[0];
+        return this._shapes.splice(index, 1)[0];
     }
     sort(): void {
         this._shapes.sort((a, b) => {
@@ -94,7 +92,7 @@ class Canvas implements Shape {
         });
     }
     removeIf(predicate: (shape: Shape) => boolean) {
-        this._shapes = this._shapes.filter(predicate);
+        this._shapes = this._shapes.filter(shape => !predicate(shape));
     }
     draw() {
         this._shapes.forEach(shape => shape.draw());
@@ -127,6 +125,5 @@ canvas.sort();
 canvas.draw();
 console.log();
 console.log('//////////////////////////////Remove IF//////////////////////////////');
-canvas.removeIf(shape => 
-    shape.constructor.name !== 'Line' || shape instanceof Line && shape.x > shape.point.x);
+canvas.removeIf(shape => shape instanceof Line && shape.x < shape.point.x);
 canvas.draw();
