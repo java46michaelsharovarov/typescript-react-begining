@@ -85,11 +85,10 @@ class Canvas implements Shape {
         return this._shapes.splice(index, 1)[0];
     }
     sort(): void {
-        this._shapes.sort((a, b) => {
-            if (a instanceof Point && b instanceof Point) {
-                return a.x - b.x || b.y - a.y
-            }
-        });
+        this._shapes.sort((a, b) => 
+            a instanceof Point && b instanceof Point ? 
+                a.x - b.x || b.y - a.y : 0
+        );
     }
     removeIf(predicate: (shape: Shape) => boolean) {
         this._shapes = this._shapes.filter(shape => !predicate(shape));
